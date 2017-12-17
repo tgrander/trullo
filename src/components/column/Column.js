@@ -20,8 +20,11 @@ class Column extends React.PureComponent {
     saveNewCard: propTypes.func.isRequired,
   }
 
-  onAddNewCard = () => {
-    this.props.addNewCard(this.props.columnId)
+  onAddNewCard = () => this.props.addNewCard(this.props.columnId)
+
+  onConfirmClick = () => {
+    const { newCardValue, columnId, saveNewCard } = this.props
+    saveNewCard(columnId, newCardValue)
   }
 
   render() {
@@ -30,7 +33,7 @@ class Column extends React.PureComponent {
       <div className="list-wrapper">
         <div className="list-content">
           <div className="list-header">
-            {this.props.name}
+            <h2 className="list-name">{this.props.name}</h2>
           </div>
           <div className="list-cards">
             {Object.keys(cards).map(cardId => {
@@ -43,17 +46,27 @@ class Column extends React.PureComponent {
                   changeCardText={this.props.changeCardText} />
               )
             })}
+            {this.props.showNewCard && (
+              <NewCard
+                changeNewCardValue={this.props.changeNewCardValue}
+                columnId={this.props.columnId}
+                saveNewCard={this.props.saveNewCard}
+                value={this.props.newCardValue} />
+            )}
           </div>
-          {this.props.showNewCard && (
-            <NewCard
-              changeNewCardValue={this.props.changeNewCardValue}
-              columnId={this.props.columnId}
-              saveNewCard={this.props.saveNewCard}
-              value={this.props.newCardValue} />
+          {this.props.showNewCard
+            ? (
+              <div className="new-card-controls-section">
+                <div className="confirm" onClick={this.onConfirmClick}>
+                  Add
+                </div>
+              </div>
+            )
+          : (
+            <div className="new-card-composer" onClick={this.onAddNewCard}>
+              Add a card...
+            </div>
           )}
-          <div className="new-card-composer" onClick={this.onAddNewCard}>
-            Add a card...
-          </div>
         </div>
       </div>
     )
