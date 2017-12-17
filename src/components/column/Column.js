@@ -27,29 +27,33 @@ class Column extends React.PureComponent {
   render() {
     const { cards, color } = this.props
     return (
-      <div className="column">
-        <div className="header" style={{backgroundColor: color}}>{this.props.name}</div>
-        <div className="cards-container">
-          {Object.keys(cards).map(cardId => {
-            const card = cards[cardId]
-            return (
-              <Card
-                key={cardId}
-                columnId={this.props.columnId}
-                {...card}
-                changeCardText={this.props.changeCardText} />
-            )
-          })}
-        </div>
-        {this.props.showNewCard && (
-          <NewCard
-            changeNewCardValue={this.props.changeNewCardValue}
-            columnId={this.props.columnId}
-            saveNewCard={this.props.saveNewCard}
-            value={this.props.newCardValue} />
-        )}
-        <div className="add-card" onClick={this.onAddNewCard}>
-          Add Card +
+      <div className="list-wrapper">
+        <div className="list-content">
+          <div className="list-header">
+            {this.props.name}
+          </div>
+          <div className="list-cards">
+            {Object.keys(cards).map(cardId => {
+              const card = cards[cardId]
+              return (
+                <Card
+                  key={cardId}
+                  columnId={this.props.columnId}
+                  {...card}
+                  changeCardText={this.props.changeCardText} />
+              )
+            })}
+          </div>
+          {this.props.showNewCard && (
+            <NewCard
+              changeNewCardValue={this.props.changeNewCardValue}
+              columnId={this.props.columnId}
+              saveNewCard={this.props.saveNewCard}
+              value={this.props.newCardValue} />
+          )}
+          <div className="new-card-composer" onClick={this.onAddNewCard}>
+            Add a card...
+          </div>
         </div>
       </div>
     )

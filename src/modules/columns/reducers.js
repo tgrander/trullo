@@ -5,7 +5,6 @@ const initialState = {
   '123': {
     columnId: '123',
     name: 'Trey',
-    color: '#8E6E95',
     cards: {
       '456': {
         cardId: '456',
