@@ -20,11 +20,15 @@ class Column extends React.PureComponent {
     saveNewCard: propTypes.func.isRequired,
   }
 
-  onAddNewCard = () => this.props.addNewCard(this.props.columnId)
+  onAddNewCard = () => {
+    this.props.addNewCard(this.props.columnId)
+  }
 
   onConfirmClick = () => {
-    const { newCardValue, columnId, saveNewCard } = this.props
-    saveNewCard(columnId, newCardValue)
+    if (this.props.newCardValue.length > 0) {
+      const { newCardValue, columnId, saveNewCard } = this.props
+      saveNewCard(columnId, newCardValue)
+    }
   }
 
   render() {

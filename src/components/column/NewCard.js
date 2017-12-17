@@ -23,8 +23,8 @@ class Card extends React.PureComponent {
   }
 
   onKeyPress = ({ key }) => {
-    if (key === 'Enter') {
-      const { columnId, value } = this.props
+    const { columnId, value } = this.props
+    if (key === 'Enter' && value.length > 0) {
       this.props.saveNewCard(columnId, value)
     }
   }
