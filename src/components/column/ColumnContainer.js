@@ -6,5 +6,4 @@ import Column from './Column'
 export default connect(
   null,
   { ...cardActions, ...columnActions }
-)
-(Column)
+)(Column)

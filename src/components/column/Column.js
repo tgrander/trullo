@@ -6,7 +6,7 @@ import './styles/Column.css'
 
 class Column extends React.PureComponent {
   static propTypes = {
-    addCard: propTypes.func.isRequired,
+    addNewCard: propTypes.func.isRequired,
     cards: propTypes.shape({
       cardId: propTypes.string,
       text: propTypes.string,
@@ -17,10 +17,11 @@ class Column extends React.PureComponent {
     name: propTypes.string.isRequired,
     showNewCard: propTypes.bool.isRequired,
     newCardValue: propTypes.string.isRequired,
+    saveNewCard: propTypes.func.isRequired,
   }
 
-  onAddCard = () => {
-    this.props.addCard(this.props.columnId)
+  onAddNewCard = () => {
+    this.props.addNewCard(this.props.columnId)
   }
 
   render() {
@@ -44,9 +45,10 @@ class Column extends React.PureComponent {
           <NewCard
             changeNewCardValue={this.props.changeNewCardValue}
             columnId={this.props.columnId}
+            saveNewCard={this.props.saveNewCard}
             value={this.props.newCardValue} />
         )}
-        <div className="add-card" onClick={this.onAddCard}>
+        <div className="add-card" onClick={this.onAddNewCard}>
           Add Card +
         </div>
       </div>

@@ -4,7 +4,6 @@ import './styles/Columns.css'
 
 class Columns extends Component {
   render() {
-    console.log(this.props.columns);
     return (
       <div className="columns">
         {this.props.columns.map(column =>

@@ -1,5 +1,4 @@
 import types from './types'
-import Card from '../cards/model'
 import cardsReducer from '../cards/reducers'
 
 const initialState = {
@@ -22,7 +21,7 @@ const initialState = {
 
 const columnsReducer = (state = initialState, action) => {
   switch (action.type) {
-    case types.ADD_CARD:
+    case types.ADD_NEW_CARD:
       return {
         ...state,
         [action.columnId]: {
@@ -36,7 +35,7 @@ const columnsReducer = (state = initialState, action) => {
         ...state,
         [action.columnId]: {
           ...state[action.columnId],
-          newCardValue: action.value
+          newCardValue: action.newCardValue
         },
       }
 
@@ -46,7 +45,7 @@ const columnsReducer = (state = initialState, action) => {
         [action.columnId]: {
           ...state[action.columnId],
           newCardValue: '',
-          cards: cardsReducer(state.cards, action)
+          cards: cardsReducer(state[action.columnId].cards, action)
         },
       }
 
