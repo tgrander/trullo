@@ -2,19 +2,21 @@ import types from './types'
 import cardsReducer from '../cards/reducers'
 
 const initialState = {
-  '123': {
-    columnId: '123',
-    name: 'Trey',
-    cards: {
-      '456': {
-        cardId: '456',
-        columnId: '123',
-        editMode: false,
-        value: 'Go shopping',
+  data: {
+    '123': {
+      columnId: '123',
+      name: 'Trey',
+      cards: {
+        '456': {
+          cardId: '456',
+          columnId: '123',
+          editMode: false,
+          value: 'Go shopping',
+        },
       },
-    },
-    showNewCard: false,
-    newCardValue: ''
+      showNewCard: false,
+      newCardValue: ''
+    }
   }
 }
 
@@ -23,29 +25,38 @@ const columnsReducer = (state = initialState, action) => {
     case types.ADD_NEW_CARD:
       return {
         ...state,
-        [action.columnId]: {
-          ...state[action.columnId],
-          showNewCard: true
-        },
+        data: {
+          ...state.data,
+          [action.columnId]: {
+            ...state.data[action.columnId],
+            showNewCard: true
+          },
+        }
       }
 
     case types.CHANGE_NEW_CARD_VALUE:
       return {
         ...state,
-        [action.columnId]: {
-          ...state[action.columnId],
-          newCardValue: action.newCardValue
-        },
+        data: {
+          ...state.data,
+          [action.columnId]: {
+            ...state.data[action.columnId],
+            newCardValue: action.newCardValue
+          },
+        }
       }
 
     case types.SAVE_NEW_CARD:
       return {
         ...state,
-        [action.columnId]: {
-          ...state[action.columnId],
-          newCardValue: '',
-          cards: cardsReducer(state[action.columnId].cards, action)
-        },
+        data: {
+          ...state.data,
+          [action.columnId]: {
+            ...state.data[action.columnId],
+            newCardValue: '',
+            cards: cardsReducer(state.data[action.columnId].cards, action)
+          },
+        }
       }
 
     default:
