@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import ColumnContainer from './column/ColumnContainer'
+import NewListComposerContainer from './column/NewListComposerContainer'
 import './styles/Columns.css'
 
 class Columns extends Component {
@@ -8,13 +9,7 @@ class Columns extends Component {
       <div className="columns">
         {this.props.columns.map(column =>
           <ColumnContainer {...column} />)}
-        <div className="new-list-composer list-wrapper">
-          <input
-            className="list-name-input"
-            placeholder="Add a list..."
-          />
-          <div className="confirm">Save</div>
-        </div>
+        <NewListComposerContainer />
       </div>
     );
   }

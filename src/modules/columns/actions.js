@@ -6,10 +6,19 @@ export const addNewCard = (columnId) => ({
   columnId
 })
 
+export const addNewList = () => ({
+  type: types.ADD_NEW_LIST
+})
+
 export const changeNewCardValue = (columnId, newCardValue) => ({
   type: types.CHANGE_NEW_CARD_VALUE,
   columnId,
   newCardValue
+})
+
+export const changeNewListValue = newListValue => ({
+  type: types.CHANGE_NEW_LIST_VALUE,
+  newListValue
 })
 
 export const saveNewCard = (columnId, value) => ({

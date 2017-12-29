@@ -17,7 +17,9 @@ const initialState = {
       showNewCard: false,
       newCardValue: ''
     }
-  }
+  },
+  newListValue: '',
+  showNewListComposer: false
 }
 
 const columnsReducer = (state = initialState, action) => {
@@ -34,6 +36,12 @@ const columnsReducer = (state = initialState, action) => {
         }
       }
 
+    case types.ADD_NEW_LIST:
+      return {
+        ...state,
+        showNewListComposer: true
+      }
+
     case types.CHANGE_NEW_CARD_VALUE:
       return {
         ...state,
@@ -44,6 +52,12 @@ const columnsReducer = (state = initialState, action) => {
             newCardValue: action.newCardValue
           },
         }
+      }
+
+    case types.CHANGE_NEW_LIST_VALUE:
+      return {
+        ...state,
+        newListValue: action.newListValue
       }
 
     case types.SAVE_NEW_CARD:
