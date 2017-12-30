@@ -60,6 +60,12 @@ const columnsReducer = (state = initialState, action) => {
         newListValue: action.newListValue
       }
 
+    case types.HIDE_NEW_LIST_COMPOSER:
+      return {
+        ...state,
+        showNewListComposer: false
+      }
+
     case types.SAVE_NEW_CARD:
       return {
         ...state,

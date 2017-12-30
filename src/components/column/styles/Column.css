@@ -50,23 +50,3 @@
 
   padding: 0px 10px 8px 10px;
 }
-
-.confirm {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-
-  background: #5aac44;
-  color: #fff;
-  padding: 8px 16px;
-  cursor: pointer;
-  font-weight: 700;
-  border-radius: 3px;
-  box-shadow: 0 1px 0 #519839;
-
-  transition: background .3s ease;
-}
-
-.confirm:hover {
-  background: #519839 100%;
-}

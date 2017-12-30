@@ -1,5 +1,5 @@
 import { connect } from 'react-redux'
-import { addNewList, changeNewListValue } from '../../modules/columns/actions'
+import { addNewList, changeNewListValue, hideNewListComposer } from '../../modules/columns/actions'
 import NewListComposer from './NewListComposer'
 
 const mapStateToProps = ({ columns }) => ({
@@ -9,5 +9,5 @@ const mapStateToProps = ({ columns }) => ({
 
 export default connect(
   mapStateToProps,
-  { addNewList, changeNewListValue }
+  { addNewList, changeNewListValue, hideNewListComposer }
 )(NewListComposer)
