@@ -83,6 +83,7 @@ const columnsReducer = (state = initialState, action) => {
     case types.SAVE_NEW_LIST:
       return {
         ...state,
+        newListValue: '',
         data: {
           ...state.data,
           [action.listId]: new List(action.listId, action.listName)

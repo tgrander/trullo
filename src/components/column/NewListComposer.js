@@ -22,7 +22,9 @@ class NewListComposer extends Component {
   }
 
   onClickSave = () => {
-    this.props.saveNewList(this.props.newListValue)
+    if (this.props.newListValue.length > 0) {
+      this.props.saveNewList(this.props.newListValue)
+    }
   }
 
   render() {
