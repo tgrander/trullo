@@ -10,10 +10,6 @@ export const addNewList = () => ({
   type: types.ADD_NEW_LIST
 })
 
-export const hideNewListComposer = () => ({
-  type: types.HIDE_NEW_LIST_COMPOSER
-})
-
 export const changeNewCardValue = (columnId, newCardValue) => ({
   type: types.CHANGE_NEW_CARD_VALUE,
   columnId,
@@ -25,9 +21,19 @@ export const changeNewListValue = newListValue => ({
   newListValue
 })
 
+export const hideNewListComposer = () => ({
+  type: types.HIDE_NEW_LIST_COMPOSER
+})
+
 export const saveNewCard = (columnId, value) => ({
   type: types.SAVE_NEW_CARD,
   cardId: uuid(),
   columnId,
   value
+})
+
+export const saveNewList = (listName) => ({
+  type: types.SAVE_NEW_LIST,
+  listId: uuid(),
+  listName
 })

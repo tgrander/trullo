@@ -9,6 +9,7 @@ class NewListComposer extends Component {
     changeNewListValue: propTypes.func.isRequired,
     hideNewListComposer: propTypes.func.isRequired,
     newListValue: propTypes.string.isRequired,
+    saveNewList: propTypes.func.isRequired,
     showNewListComposer: propTypes.bool.isRequired,
   }
 
@@ -18,6 +19,10 @@ class NewListComposer extends Component {
 
   onClickNewListButton = () => {
     this.props.addNewList()
+  }
+
+  onClickSave = () => {
+    this.props.saveNewList(this.props.newListValue)
   }
 
   render() {
@@ -32,7 +37,11 @@ class NewListComposer extends Component {
               onChange={this.onChangeNewListValue}
             />
             <div className="controls">
-              <div className="confirm">Save</div>
+              <div
+                className="confirm"
+                onClick={this.onClickSave}>
+                Save
+              </div>
               <div
                 className="cancel"
                 onClick={this.props.hideNewListComposer}

@@ -1,5 +1,6 @@
-import types from './types'
 import cardsReducer from '../cards/reducers'
+import List from './model'
+import types from './types'
 
 const initialState = {
   data: {
@@ -76,6 +77,15 @@ const columnsReducer = (state = initialState, action) => {
             newCardValue: '',
             cards: cardsReducer(state.data[action.columnId].cards, action)
           },
+        }
+      }
+
+    case types.SAVE_NEW_LIST:
+      return {
+        ...state,
+        data: {
+          ...state.data,
+          [action.listId]: new List(action.listId, action.listName)
         }
       }
 
