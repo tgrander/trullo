@@ -27,6 +27,12 @@ class NewListComposer extends Component {
     }
   }
 
+  onKeyPress = ({ key }) => {
+    if (key === 'Enter' && this.props.newListValue.length > 0) {
+      this.props.saveNewList(this.props.newListValue)
+    }
+  }
+
   render() {
     return (
       this.props.showNewListComposer
@@ -37,6 +43,7 @@ class NewListComposer extends Component {
               placeholder="Add a list..."
               value={this.props.newListValue}
               onChange={this.onChangeNewListValue}
+              onKeyPress={this.onKeyPress}
             />
             <div className="controls">
               <div
