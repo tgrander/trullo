@@ -1,5 +1,6 @@
 import propTypes from 'prop-types'
 import React from 'react'
+import { DragSource } from 'react-dnd'
 import './styles/Card.css'
 
 class Card extends React.PureComponent {
