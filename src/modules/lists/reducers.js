@@ -1,14 +1,14 @@
-import cardsReducer from '../cards/reducers'
-import List from './model'
-import types from './types'
+import cardsReducer from '../cards/reducers';
+import List from './model';
+import types from './types';
 
 const initialState = {
   data: {
-    '123': {
+    123: {
       columnId: '123',
       name: 'Trey',
       cards: {
-        '456': {
+        456: {
           cardId: '456',
           columnId: '123',
           editMode: false,
@@ -16,12 +16,12 @@ const initialState = {
         },
       },
       showNewCard: false,
-      newCardValue: ''
-    }
+      newCardValue: '',
+    },
   },
   newListValue: '',
-  showNewListComposer: false
-}
+  showNewListComposer: false,
+};
 
 const columnsReducer = (state = initialState, action) => {
   switch (action.type) {
@@ -32,16 +32,16 @@ const columnsReducer = (state = initialState, action) => {
           ...state.data,
           [action.columnId]: {
             ...state.data[action.columnId],
-            showNewCard: true
+            showNewCard: true,
           },
-        }
-      }
+        },
+      };
 
     case types.ADD_NEW_LIST:
       return {
         ...state,
-        showNewListComposer: true
-      }
+        showNewListComposer: true,
+      };
 
     case types.CHANGE_NEW_CARD_VALUE:
       return {
@@ -50,22 +50,22 @@ const columnsReducer = (state = initialState, action) => {
           ...state.data,
           [action.columnId]: {
             ...state.data[action.columnId],
-            newCardValue: action.newCardValue
+            newCardValue: action.newCardValue,
           },
-        }
-      }
+        },
+      };
 
     case types.CHANGE_NEW_LIST_VALUE:
       return {
         ...state,
-        newListValue: action.newListValue
-      }
+        newListValue: action.newListValue,
+      };
 
     case types.HIDE_NEW_LIST_COMPOSER:
       return {
         ...state,
-        showNewListComposer: false
-      }
+        showNewListComposer: false,
+      };
 
     case types.SAVE_NEW_CARD:
       return {
@@ -75,10 +75,10 @@ const columnsReducer = (state = initialState, action) => {
           [action.columnId]: {
             ...state.data[action.columnId],
             newCardValue: '',
-            cards: cardsReducer(state.data[action.columnId].cards, action)
+            cards: cardsReducer(state.data[action.columnId].cards, action),
           },
-        }
-      }
+        },
+      };
 
     case types.SAVE_NEW_LIST:
       return {
@@ -86,13 +86,13 @@ const columnsReducer = (state = initialState, action) => {
         newListValue: '',
         data: {
           ...state.data,
-          [action.listId]: new List(action.listId, action.listName)
-        }
-      }
+          [action.listId]: new List(action.listId, action.listName),
+        },
+      };
 
     default:
       return state;
   }
-}
+};
 
-export default columnsReducer
+export default columnsReducer;

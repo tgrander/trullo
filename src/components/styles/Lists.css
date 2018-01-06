@@ -1,4 +1,4 @@
-.columns {
+.lists {
   display: flex;
   justify-content: flex-start;
   flex-wrap: nowrap;
@@ -7,6 +7,6 @@
   height: 100%;
 }
 
-.columns > :not(:last-child) {
+.lists > :not(:last-child) {
   margin-right: 25px;
 }

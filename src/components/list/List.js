@@ -1,10 +1,10 @@
-import propTypes from 'prop-types'
-import React from 'react'
-import Card from './Card'
-import NewCard from './NewCard'
-import './styles/Column.css'
+import propTypes from 'prop-types';
+import React from 'react';
+import Card from './Card';
+import NewCard from './NewCard';
+import './styles/List.css';
 
-class Column extends React.PureComponent {
+class List extends React.PureComponent {
   static propTypes = {
     addNewCard: propTypes.func.isRequired,
     cards: propTypes.shape({
@@ -21,18 +21,18 @@ class Column extends React.PureComponent {
   }
 
   onAddNewCard = () => {
-    this.props.addNewCard(this.props.columnId)
+    this.props.addNewCard(this.props.columnId);
   }
 
   onConfirmClick = () => {
     if (this.props.newCardValue.length > 0) {
-      const { newCardValue, columnId, saveNewCard } = this.props
-      saveNewCard(columnId, newCardValue)
+      const { newCardValue, columnId, saveNewCard } = this.props;
+      saveNewCard(columnId, newCardValue);
     }
   }
 
   render() {
-    const { cards, color } = this.props
+    const { cards, color } = this.props;
     return (
       <div className="list-wrapper">
         <div className="list-content">
@@ -40,22 +40,24 @@ class Column extends React.PureComponent {
             <h2 className="list-name">{this.props.name}</h2>
           </div>
           <div className="list-cards">
-            {Object.keys(cards).map(cardId => {
-              const card = cards[cardId]
+            {Object.keys(cards).map((cardId) => {
+              const card = cards[cardId];
               return (
                 <Card
                   key={cardId}
                   columnId={this.props.columnId}
                   {...card}
-                  changeCardText={this.props.changeCardText} />
-              )
+                  changeCardText={this.props.changeCardText}
+                />
+              );
             })}
             {this.props.showNewCard && (
               <NewCard
                 changeNewCardValue={this.props.changeNewCardValue}
                 columnId={this.props.columnId}
                 saveNewCard={this.props.saveNewCard}
-                value={this.props.newCardValue} />
+                value={this.props.newCardValue}
+              />
             )}
           </div>
           {this.props.showNewCard
@@ -73,8 +75,8 @@ class Column extends React.PureComponent {
           )}
         </div>
       </div>
-    )
+    );
   }
 }
 
-export default Column
+export default List;

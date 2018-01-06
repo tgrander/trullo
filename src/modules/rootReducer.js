@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux';
-import columnsReducer from './columns/reducers';
+import listsReducer from './lists/reducers';
 
 
 export default combineReducers({
-  columns: columnsReducer,
+  lists: listsReducer,
 });
