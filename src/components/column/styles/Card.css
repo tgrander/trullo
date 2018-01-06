@@ -24,3 +24,8 @@
   overflow: hidden;
   outline: none;
 }
+
+.card.dragging {
+  opacity: 0.1;
+  transform: rotate(-7deg);
+}
