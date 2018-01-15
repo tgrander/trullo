@@ -14,6 +14,7 @@ class List extends React.PureComponent {
     changeNewCardValue: propTypes.func.isRequired,
     color: propTypes.string.isRequired,
     columnId: propTypes.string.isRequired,
+    connectDropTarget: propTypes.func.isRequired,
     name: propTypes.string.isRequired,
     showNewCard: propTypes.bool.isRequired,
     newCardValue: propTypes.string.isRequired,
@@ -32,8 +33,9 @@ class List extends React.PureComponent {
   }
 
   render() {
-    const { cards, color } = this.props;
-    return (
+    const { cards, connectDropTarget, isOver } = this.props;
+
+    return connectDropTarget(
       <div className="list-wrapper">
         <div className="list-content">
           <div className="list-header">
@@ -74,7 +76,7 @@ class List extends React.PureComponent {
             </div>
           )}
         </div>
-      </div>
+      </div>,
     );
   }
 }

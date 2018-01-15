@@ -34,10 +34,10 @@ class Card extends React.PureComponent {
   }
 
   render() {
-    const { connectDragSource, isDragging } = this.props;
+    const { cardId, connectDragSource, isDragging } = this.props;
 
     return connectDragSource(
-      <div className={`card ${isDragging && '.dragging'}`}>
+      <div className={`card ${isDragging && '.dragging'}`} id={cardId}>
         {this.props.value}
       </div>,
     );
