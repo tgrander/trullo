@@ -4,6 +4,12 @@ import card from './card';
 
 /* BY ID */
 
+const deleteCard = (state, action) => {
+  const newState = { ...state };
+  delete newState[action.cardId];
+  return newState;
+};
+
 const byIdInitialState = {
   456: {
     cardId: '456',
@@ -16,9 +22,14 @@ const byIdInitialState = {
 const byId = (state = byIdInitialState, action) => {
   switch (action.type) {
     case types.CHANGE_CARD_VALUE:
-    case types.DELETE_CARD:
     case types.SAVE_CARD:
-      return card(state, action);
+      return {
+        ...state,
+        [action.cardId]: card(state, action),
+      };
+
+    case types.DELETE_CARD:
+      return deleteCard(state, action);
 
     default: return state;
   }
