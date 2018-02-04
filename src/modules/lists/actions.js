@@ -1,39 +1,46 @@
-import uuid from '../../utilities/uuid'
-import types from './types'
+import uuid from '../../utilities/uuid';
+import types from './types';
 
-export const addNewCard = (columnId) => ({
-  type: types.ADD_NEW_CARD,
-  columnId
-})
+export const changeCardInProgressValue = (listId, value) => ({
+  type: types.CHANGE_CARD_IN_PROGRESS_VALUE,
+  listId,
+  value,
+});
 
-export const addNewList = () => ({
-  type: types.ADD_NEW_LIST
-})
+export const changeListInProgressValue = value => ({
+  type: types.CHANGE_LIST_IN_PROGRESS_VALUE,
+  value,
+});
 
-export const changeNewCardValue = (columnId, newCardValue) => ({
-  type: types.CHANGE_NEW_CARD_VALUE,
-  columnId,
-  newCardValue
-})
-
-export const changeNewListValue = newListValue => ({
-  type: types.CHANGE_NEW_LIST_VALUE,
-  newListValue
-})
+export const dropCard = (cardId, listId, index) => ({
+  type: types.MOVE_CARD,
+  cardId,
+  listId,
+  index,
+});
 
 export const hideNewListComposer = () => ({
-  type: types.HIDE_NEW_LIST_COMPOSER
-})
+  type: types.HIDE_LIST_IN_PROGRESS,
+});
 
-export const saveNewCard = (columnId, value) => ({
-  type: types.SAVE_NEW_CARD,
+export const saveNewCard = (listId, value) => ({
+  type: types.SAVE_CARD,
   cardId: uuid(),
-  columnId,
-  value
-})
+  listId,
+  value,
+});
 
-export const saveNewList = (listName) => ({
-  type: types.SAVE_NEW_LIST,
+export const saveList = listName => ({
+  type: types.SAVE_LIST,
   listId: uuid(),
-  listName
-})
+  listName,
+});
+
+export const showCardInProgress = listId => ({
+  type: types.SHOW_CARD_IN_PROGRESS,
+  listId,
+});
+
+export const showListInProgress = () => ({
+  type: types.SHOW_LIST_IN_PROGRESS,
+});

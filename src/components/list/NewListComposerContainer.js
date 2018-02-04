@@ -1,23 +1,26 @@
 import { connect } from 'react-redux';
 import {
-  addNewList,
-  changeNewListValue,
+  showListInProgress,
+  changeListInProgressValue,
   hideNewListComposer,
-  saveNewList,
+  saveList,
 } from '../../modules/lists/actions';
 import NewListComposer from './NewListComposer';
 
-const mapStateToProps = ({ lists }) => ({
-  newListValue: lists.newListValue,
-  showNewListComposer: lists.showNewListComposer,
-});
+const mapStateToProps = ({ lists }) => {
+  const { listInProgressValue, displayListInProgress } = lists.newList;
+  return {
+    listInProgressValue,
+    displayListInProgress,
+  };
+};
 
 export default connect(
   mapStateToProps,
   {
-    addNewList,
-    changeNewListValue,
+    showListInProgress,
+    changeListInProgressValue,
     hideNewListComposer,
-    saveNewList,
+    saveList,
   },
 )(NewListComposer);

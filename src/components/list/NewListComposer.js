@@ -1,60 +1,61 @@
-import propTypes from 'prop-types'
+import propTypes from 'prop-types';
 import React, { Component } from 'react';
 
-import './styles/NewListComposer.css'
+import './styles/NewListComposer.css';
 
 class NewListComposer extends Component {
   static propTypes = {
-    addNewList: propTypes.func.isRequired,
-    changeNewListValue: propTypes.func.isRequired,
+    showListInProgress: propTypes.func.isRequired,
+    changeListInProgressValue: propTypes.func.isRequired,
     hideNewListComposer: propTypes.func.isRequired,
-    newListValue: propTypes.string.isRequired,
-    saveNewList: propTypes.func.isRequired,
-    showNewListComposer: propTypes.bool.isRequired,
+    listInProgressValue: propTypes.string.isRequired,
+    saveList: propTypes.func.isRequired,
+    showListInProgress: propTypes.bool.isRequired,
   }
 
-  onChangeNewListValue = e => {
-    this.props.changeNewListValue(e.target.value)
+  onChangeNewListValue = (e) => {
+    this.props.changeListInProgressValue(e.target.value);
   }
 
   onClickNewListButton = () => {
-    this.props.addNewList()
+    this.props.showListInProgress();
   }
 
   onClickSave = () => {
-    if (this.props.newListValue.length > 0) {
-      this.props.saveNewList(this.props.newListValue)
+    if (this.props.listInProgressValue.length > 0) {
+      this.props.saveList(this.props.listInProgressValue);
     }
   }
 
   onKeyPress = ({ key }) => {
-    if (key === 'Enter' && this.props.newListValue.length > 0) {
-      this.props.saveNewList(this.props.newListValue)
+    if (key === 'Enter' && this.props.listInProgressValue.length > 0) {
+      this.props.saveList(this.props.listInProgressValue);
     }
   }
 
   render() {
     return (
-      this.props.showNewListComposer
+      this.props.showListInProgress
         ? (
           <div className="new-list-composer list-wrapper">
             <input
               className="list-name-input"
               placeholder="Add a list..."
-              value={this.props.newListValue}
+              value={this.props.listInProgressValue}
               onChange={this.onChangeNewListValue}
               onKeyPress={this.onKeyPress}
             />
             <div className="controls">
               <div
                 className="confirm"
-                onClick={this.onClickSave}>
+                onClick={this.onClickSave}
+              >
                 Save
               </div>
               <div
                 className="cancel"
                 onClick={this.props.hideNewListComposer}
-                >
+              >
                 Cancel
               </div>
             </div>
@@ -63,7 +64,8 @@ class NewListComposer extends Component {
         : (
           <div
             className="new-list-composer"
-            onClick={this.onClickNewListButton}>
+            onClick={this.onClickNewListButton}
+          >
             Add a list...
           </div>
         )

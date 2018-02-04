@@ -1,6 +1,6 @@
-export const changeCardText = (columnId, cardId, value) => ({
+export const changeCardText = (listId, cardId, value) => ({
   type: 'CHANGE_CARD_VALUE',
   cardId,
-  columnId,
+  listId,
   value
 })

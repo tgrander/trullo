@@ -4,8 +4,8 @@ import './styles/Card.css'
 
 class Card extends React.PureComponent {
   static propTypes = {
-    changeNewCardValue: propTypes.func.isRequired,
-    columnId: propTypes.string.isRequired,
+    changeCardInProgressValue: propTypes.func.isRequired,
+    listId: propTypes.string.isRequired,
     saveNewCard: propTypes.func.isRequired,
     value: propTypes.string.isRequired,
   }
@@ -18,14 +18,14 @@ class Card extends React.PureComponent {
   }
 
   onChangeValue = e => {
-    const { columnId } = this.props
-    this.props.changeNewCardValue(columnId, e.target.value)
+    const { listId } = this.props
+    this.props.changeCardInProgressValue(listId, e.target.value)
   }
 
   onKeyPress = ({ key }) => {
-    const { columnId, value } = this.props
+    const { listId, value } = this.props
     if (key === 'Enter' && value.length > 0) {
-      this.props.saveNewCard(columnId, value)
+      this.props.saveNewCard(listId, value)
     }
   }
 

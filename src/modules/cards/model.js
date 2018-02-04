@@ -1,7 +1,7 @@
 export default class Card {
-  constructor(cardId, columnId, value) {
+  constructor(cardId, listId, value) {
     this.cardId = cardId
-    this.columnId = columnId
+    this.listId = listId
     this.value = value,
     this.editMode = false
   }

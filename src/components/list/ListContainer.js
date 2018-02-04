@@ -1,17 +1,21 @@
 import { DropTarget } from 'react-dnd';
 import { connect } from 'react-redux';
 import * as cardActions from '../../modules/cards/actions';
-import * as columnActions from '../../modules/columns/actions';
+import * as listActions from '../../modules/lists/actions';
 import types from '../../constants/draggableTypes';
 import List from './List';
 
 const listTarget = {
   drop(props, monitor, component) {
     console.log('DROPPED');
+    console.log('PROPS when dropped', props);
+    console.log('MONITOR when dropped', monitor);
+    console.log('COMPONENT when dropped', component);
   },
   hover(props, monitor, component) {
     // when drag begins, we hide the card and only display cardDragPreview
     const item = monitor.getItem();
+    // @TODO replace DOM manipulation with redux state to hide card
     window.document.getElementById(item.cardId).style.display = 'none';
   },
 };
@@ -28,5 +32,5 @@ const dropTargetList = DropTarget(types.CARD, listTarget, collect)(List);
 
 export default connect(
   null,
-  { ...cardActions, ...columnActions },
+  { ...cardActions, ...listActions },
 )(dropTargetList);

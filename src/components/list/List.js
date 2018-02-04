@@ -6,34 +6,36 @@ import './styles/List.css';
 
 class List extends React.PureComponent {
   static propTypes = {
-    addNewCard: propTypes.func.isRequired,
+    showCardInProgress: propTypes.func.isRequired,
     cards: propTypes.shape({
       cardId: propTypes.string,
       text: propTypes.string,
     }).isRequired,
-    changeNewCardValue: propTypes.func.isRequired,
+    changeCardInProgressValue: propTypes.func.isRequired,
     color: propTypes.string.isRequired,
-    columnId: propTypes.string.isRequired,
+    listId: propTypes.string.isRequired,
     connectDropTarget: propTypes.func.isRequired,
     name: propTypes.string.isRequired,
-    showNewCard: propTypes.bool.isRequired,
-    newCardValue: propTypes.string.isRequired,
+    displayCardInProgress: propTypes.bool.isRequired,
+    cardInProgressValue: propTypes.string.isRequired,
     saveNewCard: propTypes.func.isRequired,
   }
 
   onAddNewCard = () => {
-    this.props.addNewCard(this.props.columnId);
+    this.props.showCardInProgress(this.props.listId);
   }
 
   onConfirmClick = () => {
-    if (this.props.newCardValue.length > 0) {
-      const { newCardValue, columnId, saveNewCard } = this.props;
-      saveNewCard(columnId, newCardValue);
+    if (this.props.cardInProgressValue.length > 0) {
+      const { cardInProgressValue, listId, saveNewCard } = this.props;
+      saveNewCard(listId, cardInProgressValue);
     }
   }
 
   render() {
     const { cards, connectDropTarget, isOver } = this.props;
+
+    console.log('LIST PROPS: ', this.props);
 
     return connectDropTarget(
       <div className="list-wrapper">
@@ -42,27 +44,24 @@ class List extends React.PureComponent {
             <h2 className="list-name">{this.props.name}</h2>
           </div>
           <div className="list-cards">
-            {Object.keys(cards).map((cardId) => {
-              const card = cards[cardId];
-              return (
-                <Card
-                  key={cardId}
-                  columnId={this.props.columnId}
-                  {...card}
-                  changeCardText={this.props.changeCardText}
-                />
-              );
-            })}
-            {this.props.showNewCard && (
+            {cards.map(card => (
+              <Card
+                key={card.cardId}
+                listId={this.props.listId}
+                {...card}
+                changeCardText={this.props.changeCardText}
+              />
+              ))}
+            {this.props.displayCardInProgress && (
               <NewCard
-                changeNewCardValue={this.props.changeNewCardValue}
-                columnId={this.props.columnId}
+                changeCardInProgressValue={this.props.changeCardInProgressValue}
+                listId={this.props.listId}
                 saveNewCard={this.props.saveNewCard}
-                value={this.props.newCardValue}
+                value={this.props.cardInProgressValue}
               />
             )}
           </div>
-          {this.props.showNewCard
+          {this.props.displayCardInProgress
             ? (
               <div className="new-card-controls-section">
                 <div className="confirm" onClick={this.onConfirmClick}>
