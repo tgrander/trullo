@@ -35,8 +35,6 @@ class List extends React.PureComponent {
   render() {
     const { cards, connectDropTarget, isOver } = this.props;
 
-    console.log('LIST PROPS: ', this.props);
-
     return connectDropTarget(
       <div className="list-wrapper">
         <div className="list-content">
