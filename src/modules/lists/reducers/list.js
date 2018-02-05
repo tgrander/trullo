@@ -1,8 +1,12 @@
+import removeItemFromArray from '../../../utilities/removeItemFromArray';
 import updateObject from '../../../utilities/updateObject';
 import types from '../types';
 
 const dropCard = (state, action) => {
   const index = action.index || state.cards.length;
+  const { cardId, lastList, nextList } = action;
+  // remove card from lastList
+  // add card to nextList
   const newCards = [
     ...state.cards.slice(0, index),
     action.cardId,
@@ -10,6 +14,10 @@ const dropCard = (state, action) => {
   ];
   return updateObject(state, { cards: newCards });
 };
+
+const removeCard = (state, action) => ({
+
+});
 
 const saveCard = (state, action) => {
   const cards = {

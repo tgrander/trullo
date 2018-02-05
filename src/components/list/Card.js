@@ -11,7 +11,7 @@ const cardSource = {
   beginDrag(props, monitor) {
     return {
       cardId: props.cardId,
-      listId: props.listId,
+      lastList: props.listId,
     };
   },
 };

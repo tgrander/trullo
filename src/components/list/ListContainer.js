@@ -7,10 +7,11 @@ import List from './List';
 
 const listTarget = {
   drop(props, monitor) {
-    const { cardId } = monitor.getItem();
-    props.dropCard(cardId, props.listId);
+    const { cardId, lastList } = monitor.getItem();
+    const nextList = props.listId;
+    props.dropCard({ cardId, lastList, nextList });
   },
-  hover(props, monitor, component) {
+  hover(props, monitor) {
     // when drag begins, we hide the card and only display cardDragPreview
     const item = monitor.getItem();
     // @TODO replace DOM manipulation with redux state to hide card
