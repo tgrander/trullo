@@ -13,7 +13,7 @@ export const changeListInProgressValue = value => ({
 });
 
 export const dropCard = (cardId, listId, index) => ({
-  type: types.MOVE_CARD,
+  type: types.DROP_CARD,
   cardId,
   listId,
   index,

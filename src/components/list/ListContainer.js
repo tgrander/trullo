@@ -6,17 +6,15 @@ import types from '../../constants/draggableTypes';
 import List from './List';
 
 const listTarget = {
-  drop(props, monitor, component) {
-    console.log('DROPPED');
-    console.log('PROPS when dropped', props);
-    console.log('MONITOR when dropped', monitor);
-    console.log('COMPONENT when dropped', component);
+  drop(props, monitor) {
+    const { cardId } = monitor.getItem();
+    props.dropCard(cardId, props.listId);
   },
   hover(props, monitor, component) {
     // when drag begins, we hide the card and only display cardDragPreview
     const item = monitor.getItem();
     // @TODO replace DOM manipulation with redux state to hide card
-    window.document.getElementById(item.cardId).style.display = 'none';
+    // window.document.getElementById(item.cardId).style.display = 'none';
   },
 };
 

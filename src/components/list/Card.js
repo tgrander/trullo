@@ -8,7 +8,7 @@ const cardSource = {
   isDragging(props, monitor) {
     return monitor.getItem().cardId === props.cardId;
   },
-  beginDrag(props, monitor, component) {
+  beginDrag(props, monitor) {
     return {
       cardId: props.cardId,
       listId: props.listId,

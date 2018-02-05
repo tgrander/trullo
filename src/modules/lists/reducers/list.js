@@ -2,23 +2,22 @@ import updateObject from '../../../utilities/updateObject';
 import types from '../types';
 
 const dropCard = (state, action) => {
+  const index = action.index || state.cards.length;
   const newCards = [
-    ...state.cards.slice(0, action.index),
+    ...state.cards.slice(0, index),
     action.cardId,
-    ...state.cards.slice(action.index),
+    ...state.cards.slice(index),
   ];
   return updateObject(state, { cards: newCards });
 };
 
-const saveCard = (state, action) => (
-  updateObject(
-    state,
-    {
-      cards: [...state.cards, action.cardId],
-      cardInProgressValue: '',
-    },
-  )
-);
+const saveCard = (state, action) => {
+  const cards = {
+    cards: [...state.cards, action.cardId],
+    cardInProgressValue: '',
+  };
+  return updateObject(state, cards);
+};
 
 const saveList = (state, action) => ({
   listId: action.listId,
