@@ -1,32 +1,7 @@
-import { combineReducers } from 'redux';
 import insertItemAtIndex from '../../../utilities/insertItemAtIndex';
 import removeItemFromArray from '../../../utilities/removeItemFromArray';
-import updateObject from '../../../utilities/updateObject';
 import types from '../types';
 import list from './list';
-
-const newListInitialState = {
-  listInProgressValue: '',
-  displayListInProgress: false,
-};
-
-const newList = (state = newListInitialState, action) => {
-  switch (action.type) {
-    case types.CHANGE_LIST_IN_PROGRESS_VALUE:
-      return updateObject(state, { listInProgressValue: action.value });
-
-    case types.HIDE_LIST_IN_PROGRESS:
-      return updateObject(state, { displayListInProgress: false });
-
-    case types.SHOW_LIST_IN_PROGRESS:
-      return updateObject(state, { displayListInProgress: true });
-
-    case types.SAVE_LIST:
-      return updateObject(state, { listInProgressValue: '' });
-
-    default: return state;
-  }
-};
 
 const dropCard = (state, action) => {
   const { cardId, lastList, nextList } = action;
@@ -47,8 +22,6 @@ const dropCard = (state, action) => {
 
   return newState;
 };
-
-/* BY ID */
 
 const byIdInitialState = {
   123: {
@@ -77,22 +50,4 @@ const byId = (state = byIdInitialState, action) => {
   }
 };
 
-/* ALL IDs */
-
-const allIdsInitialState = ['123'];
-
-const allIds = (state = allIdsInitialState, action) => {
-  switch (action.type) {
-    case types.SAVE_LIST: return [...state, action.listId];
-
-    default: return state;
-  }
-};
-
-const lists = combineReducers({
-  allIds,
-  byId,
-  newList,
-});
-
-export default lists;
+export default byId;
