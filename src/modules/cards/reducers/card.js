@@ -2,10 +2,9 @@ import updateObject from '../../../utilities/updateObject';
 import types from '../types';
 
 const saveCard = (state, action) => {
-  const { cardId, listId, value } = action;
+  const { cardId, value } = action;
   return {
     cardId,
-    listId,
     value,
     editMode: false,
   };

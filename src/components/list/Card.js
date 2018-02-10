@@ -26,9 +26,7 @@ function collect(connect, monitor) {
 class Card extends React.PureComponent {
   static propTypes = {
     cardId: propTypes.string.isRequired,
-    changeCardText: propTypes.func.isRequired,
     connectDragSource: propTypes.func.isRequired,
-    editMode: propTypes.bool.isRequired,
     isDragging: propTypes.bool.isRequired,
     value: propTypes.string.isRequired,
   }
