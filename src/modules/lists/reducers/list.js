@@ -1,25 +1,7 @@
-import removeItemFromArray from '../../../utilities/removeItemFromArray';
 import updateObject from '../../../utilities/updateObject';
 import types from '../types';
 
-const dropCard = (state, action) => {
-  const index = action.index || state.cards.length;
-  const { cardId, lastList, nextList } = action;
-  // remove card from lastList
-  // add card to nextList
-  const newCards = [
-    ...state.cards.slice(0, index),
-    action.cardId,
-    ...state.cards.slice(index),
-  ];
-  return updateObject(state, { cards: newCards });
-};
-
-const removeCard = (state, action) => ({
-
-});
-
-const saveCard = (state, action) => {
+const saveNewCard = (state, action) => {
   const cards = {
     cards: [...state.cards, action.cardId],
     cardInProgressValue: '',
@@ -27,7 +9,7 @@ const saveCard = (state, action) => {
   return updateObject(state, cards);
 };
 
-const saveList = (state, action) => ({
+const saveNewList = (state, action) => ({
   listId: action.listId,
   name: action.listName,
   cards: [],
@@ -40,11 +22,9 @@ const list = (state = {}, action) => {
     case types.CHANGE_CARD_IN_PROGRESS_VALUE:
       return updateObject(state, { cardInProgressValue: action.value });
 
-    case types.DROP_CARD: return dropCard(state, action);
+    case types.SAVE_CARD: return saveNewCard(state, action);
 
-    case types.SAVE_CARD: return saveCard(state, action);
-
-    case types.SAVE_LIST: return saveList(state, action);
+    case types.SAVE_LIST: return saveNewList(state, action);
 
     case types.SHOW_CARD_IN_PROGRESS:
       return updateObject(state, { displayCardInProgress: true });

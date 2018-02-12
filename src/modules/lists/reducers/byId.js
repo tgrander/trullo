@@ -1,26 +1,34 @@
 import insertItemAtIndex from '../../../utilities/insertItemAtIndex';
-import removeItemFromArray from '../../../utilities/removeItemFromArray';
+import removeItemFromArrayByIndex from '../../../utilities/removeItemFromArrayByIndex';
 import types from '../types';
 import list from './list';
 
+const addCardToList = (list, card) => ({
+  ...list,
+  cards: insertItemAtIndex(list.cards, card),
+});
+
+const removeCardFromList = (list, cardIndex) => ({
+  ...list,
+  cards: removeItemFromArrayByIndex(list.cards, cardIndex),
+});
+
 const dropCard = (state, action) => {
-  const { cardId, lastList, nextList } = action;
-  const dropTargetList = lastList === nextList ? lastList : nextList;
-  const index = action.index || state[dropTargetList].cards.length;
+  const {
+    lastList, lastIndex, nextList,
+  } = action;
 
-  const newState = {
+  if (lastList === nextList) {
+    return state;
+  }
+
+  const card = state[lastList].cards[lastIndex];
+
+  return {
     ...state,
-    [dropTargetList]: {
-      ...state[dropTargetList],
-      cards: insertItemAtIndex(state[dropTargetList].cards, cardId, index),
-    },
-    [lastList]: {
-      ...state[lastList],
-      cards: removeItemFromArray(state[lastList].cards, cardId),
-    },
+    [nextList]: addCardToList(state[nextList], card),
+    [lastList]: removeCardFromList(state[lastList], lastIndex),
   };
-
-  return newState;
 };
 
 const byIdInitialState = {

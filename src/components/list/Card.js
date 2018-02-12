@@ -9,10 +9,8 @@ const cardSource = {
     return monitor.getItem().cardId === props.cardId;
   },
   beginDrag(props, monitor) {
-    return {
-      cardId: props.cardId,
-      lastList: props.listId,
-    };
+    const { cardId, listId, listIndex } = props;
+    return { cardId, listId, listIndex };
   },
 };
 
@@ -35,7 +33,7 @@ class Card extends React.PureComponent {
     const { cardId, connectDragSource, isDragging } = this.props;
 
     return connectDragSource(
-      <div className={`card ${isDragging && '.dragging'}`} id={cardId}>
+      <div id={cardId} className={`card ${isDragging && '.dragging'}`}>
         {this.props.value}
       </div>,
     );

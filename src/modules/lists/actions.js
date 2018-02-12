@@ -12,14 +12,12 @@ export const changeListInProgressValue = value => ({
   value,
 });
 
-export const dropCard = ({
-  cardId, lastList, nextList, index,
-}) => ({
+export const dropCard = (lastList, lastIndex, nextList, nextIndex) => ({
   type: types.DROP_CARD,
-  cardId,
-  index,
   lastList,
+  lastIndex,
   nextList,
+  nextIndex,
 });
 
 export const hideNewListComposer = () => ({

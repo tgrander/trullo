@@ -1,6 +1,7 @@
 import propTypes from 'prop-types';
 import React from 'react';
 import Card from './Card';
+// @TODO: change name from NewCard to CardInProgess
 import NewCard from './NewCard';
 import './styles/List.css';
 
@@ -35,6 +36,9 @@ class List extends React.PureComponent {
   render() {
     const { cards, connectDropTarget, isOver } = this.props;
 
+    // TODO: change 'confirm' class to styled component
+    // TODO: change 'new-card-composer' class to styled component
+
     return connectDropTarget(
       <div className="list-wrapper">
         <div className="list-content">
@@ -42,12 +46,12 @@ class List extends React.PureComponent {
             <h2 className="list-name">{this.props.name}</h2>
           </div>
           <div className="list-cards">
-            {cards.map(card => (
+            {cards.map((card, index) => (
               <Card
                 key={card.cardId}
                 listId={this.props.listId}
+                listIndex={index}
                 {...card}
-                changeCardText={this.props.changeCardText}
               />
               ))}
             {this.props.displayCardInProgress && (
