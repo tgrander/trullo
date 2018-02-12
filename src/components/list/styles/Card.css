@@ -1,7 +1,4 @@
 .card {
-  display: flex;
-  align-items: center;
-
   height: auto;
   padding: 12px;
 
@@ -9,6 +6,9 @@
   border-bottom: 1px solid #ccc;
   background-color: #fff;
   cursor: pointer;
+
+  text-align: left;
+  word-wrap: break-word;
 }
 
 .card-textarea,
